@@ -1,0 +1,31 @@
+<h1>Flight Details</h1>
+<p>Airline: <%= flight.airline %></p>
+<p>Airport: <%= flight.airport %></p>
+<p>Flight Number: <%= flight.flightNo %></p>
+<p>Departs: <%= flight.departs %></p>
+
+<h2>Destinations</h2>
+<ul>
+  <% flight.destinations.forEach(destination => { %>
+    <li><%= destination.airport %> - <%= destination.arrival %></li>
+  <% }); %>
+</ul>
+
+<h2>Add Destination</h2>
+<form action="/flights/<%= flight._id %>/destinations" method="POST">
+  <label for="airport">Airport:</label>
+  <select id="airport" name="airport" required>
+    <option value="AUS">AUS</option>
+    <option value="DFW">DFW</option>
+    <option value="DEN">DEN</option>
+    <option value="LAX">LAX</option>
+    <option value="SAN">SAN</option>
+  </select>
+
+  <label for="arrival">Arrival Date/Time:</label>
+  <input type="datetime-local" id="arrival" name="arrival" required>
+
+  <button type="submit">Add Destination</button>
+</form>
+
+<a href="/flights">Back to Flights</a>
